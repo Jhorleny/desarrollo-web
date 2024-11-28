@@ -1,0 +1,55 @@
+-- Crear la base de datos `gestion_cursos` y seleccionarla
+CREATE DATABASE IF NOT EXISTS `gestion_cursos` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `gestion_cursos`;
+
+-- Crear tabla `cursos`
+CREATE TABLE `cursos` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `descripcion` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Insertar datos en la tabla `cursos`
+INSERT INTO `cursos` (`id`, `nombre`, `descripcion`) VALUES
+(1, 'Curso de PHP', 'Curso introductorio de PHP.'),
+(2, 'Curso de MySQL', 'Curso sobre bases de datos relacionales.'),
+(3, 'Curso de HTML y CSS', 'Curso de diseño web básico.');
+
+-- Crear tabla `inscripciones`
+CREATE TABLE `inscripciones` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `telefono` varchar(15) DEFAULT NULL,
+  `id_curso` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Insertar datos en la tabla `inscripciones`
+INSERT INTO `inscripciones` (`id`, `nombre`, `email`, `telefono`, `id_curso`) VALUES
+(29, 'evita', 'evita@gmail.com', '0981638789', 3),
+(30, 'elvin ', 'elvin@hotmail.com', '098473', 2),
+(31, 'jose', 'jose1@gmail.com', '98854282', 3),
+(32, 'eliza', 'eliza@gmail.com', '19724613', 3),
+(33, 'JHORLE', 'jeguaillas1@utpl.edu.ec', '09816456', 3),
+(34, 'GATA', 'GATA@GMAIL.COM', '35466', 1),
+(36, 'kelvien ', 'kelbin@gmail.com', '491672', 3),
+(37, 'jhorleny', 'gjhorleny1@gmail.com', '0981638789', 1);
+
+-- Crear índices para las tablas
+ALTER TABLE `cursos`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `inscripciones`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_curso` (`id_curso`);
+
+-- Configurar AUTO_INCREMENT
+ALTER TABLE `cursos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+ALTER TABLE `inscripciones`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+-- Establecer restricciones de clave foránea
+ALTER TABLE `inscripciones`
+  ADD CONSTRAINT `inscripciones_ibfk_1` FOREIGN KEY (`id_curso`) REFERENCES `cursos` (`id`);
