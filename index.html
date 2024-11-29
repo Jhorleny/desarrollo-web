@@ -1,0 +1,41 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción a Cursos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a la Plataforma de Cursos</h1>
+    </header>
+    <main>
+        <form action="procesar_inscripcion.php" method="POST">
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" required><br>
+        
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" name="email" id="email" required><br>
+        
+            <label for="telefono">Teléfono:</label>
+            <input type="text" name="telefono" id="telefono"><br>
+        
+            <label for="id_curso">Selecciona un Curso:</label>
+            <select id="id_curso" name="id_curso" required>
+                <option value="1">Curso de PHP</option>
+                <option value="2">Curso de MySQL</option>
+                <option value="3">Curso de HTML y CSS</option>
+            </select>
+
+            <div class="botones">
+                <button type="submit">Inscribirse</button>
+                <button type="button" onclick="window.location.href='cursos.html'">Cursos</button>
+                <button class="botton-inscripciones" onclick="window.location.href='inscripciones.php'">Ver Inscripciones</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
+
+
